@@ -1,0 +1,30 @@
+{{define "Title"}}Home{{end}}
+{{define "Body"}}
+<div>
+    Region Browse: {{.Title}}
+</div>
+
+{{FavURL "---"}}
+
+<ul>
+    {{range .RegionStruct}}
+    <li>{{.Title}}</li>
+    {{end}}
+</ul>
+
+<hr>
+
+<ul>
+    {{range $index, $element := .RegionMap}}
+    <li><strong>{{$index}}</strong> / <span>{{$element.Title}}</span></li>
+    {{end}}
+</ul>
+
+<hr>
+
+<ul>
+    {{range $index, $element := .RegionSlice}}
+    <li><strong>{{$index}}</strong> / <span>{{$element}}</span></li>
+    {{end}}
+</ul>
+{{end}}

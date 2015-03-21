@@ -1,0 +1,9 @@
+{
+    "WorkingDir": "{GOPATH}/src/github.com/zhgo/suite",
+    "SourceDir": [
+        "{GOPATH}/src/github.com/zhgo"
+    ],
+    "SourceExt": ".c|.cpp|.go|.h|.json",
+    "BuildCmd": "go build -o suite.exe github.com/zhgo/suite",
+    "RunCmd": "suite.exe"
+}
