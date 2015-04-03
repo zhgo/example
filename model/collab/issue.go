@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-// Table struct
-type IssueTable struct {
+// Entity struct
+type IssueEntity struct {
 	IssueId          int64 `pk:"true"`
 	UserID           int64
 	CreationTime     time.Time
@@ -32,10 +32,14 @@ type IssueModel struct {
 	db.Model //Import web.Model
 }
 
-// Model instance
-var Issue IssueModel
+// Table object.
+var issueTable db.Table = db.NewTable("collab_issue", new(IssueEntity))
 
-// Init model
-func init() {
-	Issue.Init("Collab", "collab_issue", new(IssueTable))
+// New Model
+func NewIssueModel() *IssueModel {
+    //return &IssueModel{Module: "Collab", Table: issueTable}
+    m := IssueModel{}
+    m.Module = "Collab"
+    m.Table = issueTable
+    return &m
 }

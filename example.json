@@ -2,14 +2,10 @@
   "Environment": 0,
   "Listen": "localhost:8081",
   "Hosts": {
-    "Default": {"Path": "/", "Root": "{WorkingDir}/public"}
+    "Public": {"Path": "/", "Root": "{WorkingDir}/public"}
   },
   "Modules": {
-    "Collab": {},
-    "Passport": {}
-  },
-  "Databases": {
-    "Collab": {"Type": "sqlite3", "DSN": "{WorkingDir}/data/sqlite/collab.db", "Profiling": false},
-    "Passport": {"Type": "mysql", "DSN": "0:0@tcp(localhost:3306)/passport?charset=utf8", "Profiling": false}
+    "Collab": {"DB": {"Type": "sqlite3", "DSN": "{WorkingDir}/data/sqlite/collab.db", "Profiling": false}},
+    "Passport": {"DB": {"Type": "mysql", "DSN": "0:0@tcp(localhost:3306)/passport?charset=utf8", "Profiling": false}}
   }
 }

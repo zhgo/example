@@ -11,43 +11,45 @@ import (
 	"time"
 )
 
-type CollabIssue struct {
+type IssueController struct {
 	//import web.Controller
 	web.Controller
 }
 
 func init() {
-	web.NewController(new(CollabIssue))
+	web.NewController("Collab", new(IssueController))
 }
 
 //Detail
-func (c *CollabIssue) Detail(setId int64, id string) web.Result {
+func (c *IssueController) Detail(setId int64, id string) web.Result {
 	return c.View.Render()
 }
 
 //Browse
-func (c *CollabIssue) Browse(setId int64) web.Result {
+func (c *IssueController) Browse(setId int64) web.Result {
 	return c.View.Render()
 }
 
 //Insert
-func (c *CollabIssue) AddSubmit(setId int64) web.Result {
-	item1 := collab.IssueTable{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "Demo"}
-	item2 := collab.IssueTable{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "小六"}
+func (c *IssueController) AddSubmit(setId int64) web.Result {
+    issue := collab.NewIssueModel()
+
+    item1 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "Demo"}
+	item2 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "小六"}
 	data := []interface{}{item1, item2}
 
-	lastInsertId, err := collab.Issue.Query().Insert(&data)
+	lastInsertId, err := issue.Insert(&data)
 
 	log.Printf("%d\n", lastInsertId)
 	return web.Result{lastInsertId, err.Error()}
 }
 
 //Update
-func (c *CollabIssue) EditSubmit(setId int64, id string) web.Result {
+func (c *IssueController) EditSubmit(setId int64, id string) web.Result {
 	return c.View.Render()
 }
 
 //Delete
-func (c *CollabIssue) DeleteSubmit(setId int64, id string) web.Result {
+func (c *IssueController) DeleteSubmit(setId int64, id string) web.Result {
 	return c.View.Render()
 }

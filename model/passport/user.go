@@ -5,11 +5,8 @@
 package passport
 
 import (
-	"github.com/zhgo/orm"
+	"github.com/zhgo/db"
 )
-
-// Module name.
-var ModuleName string = "Passport"
 
 // Entity struct
 type UserEntity struct {
@@ -18,17 +15,21 @@ type UserEntity struct {
 	Nickname     string
 }
 
-// User table object.
-var userTable orm.Table = orm.NewTable("passport_user", new(UserEntity))
-
 // Model struct
 type UserModel struct {
-	orm.Model //Import orm.Model
+	db.Model //Import orm.Model
 }
 
-// New UserModel
+// Table object.
+var userTable db.Table = db.NewTable("passport_user", new(UserEntity))
+
+// New Model
 func NewUserModel() *UserModel {
-    return &UserModel{Module: ModuleName, Table: userTable}
+    //return &UserModel{Module: "Passport", Table: userTable}
+    m := UserModel{}
+    m.Module = "Passport"
+    m.Table = userTable
+    return &m
 }
 
 // Custom function

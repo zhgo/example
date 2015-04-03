@@ -16,7 +16,7 @@ type UserController struct {
 }
 
 func init() {
-	web.NewController(passport.ModuleName, new(UserController))
+	web.NewController("Passport", new(UserController))
 }
 
 //Detail
@@ -63,11 +63,13 @@ func (c *UserController) BrowseBySet(setId int64) web.Result {
 
 //Insert
 func (c *UserController) AddSubmit(setId int64) web.Result {
-	item1 := passport.UserEntity{UserId: 2, Nickname: "Demo"}
+    user := passport.NewUserModel()
+
+    item1 := passport.UserEntity{UserId: 2, Nickname: "Demo"}
 	item2 := passport.UserEntity{UserId: 6, Nickname: "小六"}
 	data := []interface{}{item1, item2}
 
-	lastInsertId, err := passport.User.Query().Insert(&data)
+	lastInsertId, err := user.Insert(&data)
 
 	log.Printf("%d\n", lastInsertId)
 	return web.Result{lastInsertId, err.Error()}
@@ -75,9 +77,12 @@ func (c *UserController) AddSubmit(setId int64) web.Result {
 
 //Update
 func (c *UserController) EditSubmit(setId int64, id string) web.Result {
+    user := passport.NewUserModel()
+
 	data := map[string]interface{}{"Nickname": "Demo111"}
 
-	rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Update(&data)
+	//rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Update(&data)
+	rowsAffected, err := user.Update(&data)
 
 	log.Printf("%d\n", rowsAffected)
 	return web.Result{rowsAffected, err.Error()}
@@ -85,7 +90,10 @@ func (c *UserController) EditSubmit(setId int64, id string) web.Result {
 
 //Delete
 func (c *UserController) DeleteSubmit(setId int64, id string) web.Result {
-	rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Delete()
+    user := passport.NewUserModel()
+
+    //rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Delete()
+    rowsAffected, err := user.Delete()
 
 	log.Printf("%d\n", rowsAffected)
 	return web.Result{rowsAffected, err.Error()}
