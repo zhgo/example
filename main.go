@@ -1,3 +1,7 @@
+// Copyright 2014 The zhgo Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 package main
 
 import (
@@ -7,17 +11,12 @@ import (
     "github.com/zhgo/web"
     "github.com/zhgo/console"
     "log"
-    "flag"
 )
 
 func main() {
     log.Printf("%s\n", kernel.WorkingDir)
 
-    var c, p, a string
-    flag.StringVar(&c, "c", kernel.WorkingDir+"/example.json", "Usage: mplus -c=/path/to/example.json")
-    flag.StringVar(&p, "p", "", "Usage: example -p=Passport/User/Login")
-    flag.StringVar(&a, "a", "", "Usage: example -a=1/2/3")
-    flag.Parse()
+    a, c, p := kernel.Console("example")
 
     if p == "" {
         web.App.Init(c)
