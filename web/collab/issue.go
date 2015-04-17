@@ -32,16 +32,15 @@ func (c *IssueController) Browse(setId int64) web.Result {
 
 //Insert
 func (c *IssueController) AddSubmit(setId int64) web.Result {
-    issue := collab.NewIssueModel()
-
     item1 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "Demo"}
 	item2 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "小六"}
 	data := []interface{}{item1, item2}
+    q := collab.Issue.Insert()
+    // FIXME: Struct is incorrect.
+    r, err := q.Exec(data)
 
-	lastInsertId, err := issue.Insert(&data)
-
-	log.Printf("%d\n", lastInsertId)
-	return web.Result{lastInsertId, err.Error()}
+	log.Printf("%d\n", r.LastInsertId())
+	return web.Result{r.LastInsertId(), err.Error()}
 }
 
 //Update

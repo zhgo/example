@@ -17,19 +17,18 @@ type UserEntity struct {
 
 // Model struct
 type UserModel struct {
-	db.Model //Import orm.Model
+	db.Model //Import db.Model
 }
 
-// Table object.
-var userTable db.Table = db.NewTable("passport_user", new(UserEntity))
+// Table
+var UserTable = db.NewTable("passport_user", new(UserEntity))
+
+// Model
+var User = NewUserModel()
 
 // New Model
 func NewUserModel() *UserModel {
-    //return &UserModel{Module: "Passport", Table: userTable}
-    m := UserModel{}
-    m.Module = "Passport"
-    m.Table = userTable
-    return &m
+    return db.NewModel("Passport", UserTable)
 }
 
 // Custom function

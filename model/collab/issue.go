@@ -29,17 +29,16 @@ type IssueEntity struct {
 
 // Model struct
 type IssueModel struct {
-	db.Model //Import web.Model
+	db.Model //Import db.Model
 }
 
-// Table object.
-var issueTable db.Table = db.NewTable("collab_issue", new(IssueEntity))
+// Table
+var IssueTable = db.NewTable("collab_issue", new(IssueEntity))
+
+// Model
+var Issue = NewIssueModel()
 
 // New Model
 func NewIssueModel() *IssueModel {
-    //return &IssueModel{Module: "Collab", Table: issueTable}
-    m := IssueModel{}
-    m.Module = "Collab"
-    m.Table = issueTable
-    return &m
+    return db.NewModel("Collab", IssueTable)
 }

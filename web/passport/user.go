@@ -21,16 +21,17 @@ func init() {
 
 //Detail
 func (c *UserController) Detail(setId int64, id string) web.Result {
-    user := passport.NewUserModel()
-
 	userEntity := passport.UserEntity{}
-    user.Select().Where("Nickname", "LIKE", "%中%").Row(&userEntity)
+    q := passport.User.Select()
+    q.Where(q.Like("Nickname", "%中%")).Row(&userEntity)
 
     userMap := map[string]interface{}{}
-    user.Select("Nickname").Row(&userMap)
+    q = passport.User.Select("Nickname")
+    q.Row(&userMap)
 
     userSlice := []interface{}{}
-    user.Select("Nickname").Row(&userSlice)
+    q = passport.User.Select("Nickname")
+    q.Row(&userSlice)
 
 	c.View.Set("Title", "Region Browse")
 	c.View.Set("UserStruct", &userEntity)
@@ -42,59 +43,57 @@ func (c *UserController) Detail(setId int64, id string) web.Result {
 
 //Browse
 func (c *UserController) BrowseBySet(setId int64) web.Result {
-    user := passport.NewUserModel()
+    userEntity := []passport.UserEntity{}
+    q := passport.User.Select()
+    q.Where(q.Like("Nickname", "%中%")).Rows(&userEntity)
 
-	region := []passport.UserEntity{}
-    user.Select().Where("Nickname", "LIKE", "%中%").Rows(&region)
+    userMap := []map[string]interface{}{}
+    q = passport.User.Select("Nickname")
+    q.Rows(&userMap)
 
-	regionMap := []map[string]interface{}{}
-    user.Select("Nickname").Rows(&regionMap)
-
-	regionSlice := [][]interface{}{}
-    user.Select("Nickname").Rows(&regionSlice)
+    userSlice := [][]interface{}{}
+    q = passport.User.Select("Nickname")
+    q.Rows(&userSlice)
 
 	c.View.Set("Title", "Region Browse")
-	c.View.Set("RegionStruct", &region)
-	c.View.Set("RegionMap", &regionMap)
-	c.View.Set("RegionSlice", &regionSlice)
+	c.View.Set("RegionStruct", &userEntity)
+	c.View.Set("RegionMap", &userMap)
+	c.View.Set("RegionSlice", &userSlice)
 
 	return c.View.Render()
 }
 
 //Insert
 func (c *UserController) AddSubmit(setId int64) web.Result {
-    user := passport.NewUserModel()
-
     item1 := passport.UserEntity{UserId: 2, Nickname: "Demo"}
 	item2 := passport.UserEntity{UserId: 6, Nickname: "小六"}
 	data := []interface{}{item1, item2}
+    q := passport.User.Insert()
+    // FIXME: Struct is incorrect.
+    r, err := q.Exec(data)
 
-	lastInsertId, err := user.Insert(&data)
-
-	log.Printf("%d\n", lastInsertId)
-	return web.Result{lastInsertId, err.Error()}
+	log.Printf("%d\n", r.LastInsertId())
+	return web.Result{r.LastInsertId(), err.Error()}
 }
 
 //Update
 func (c *UserController) EditSubmit(setId int64, id string) web.Result {
-    user := passport.NewUserModel()
-
 	data := map[string]interface{}{"Nickname": "Demo111"}
 
-	//rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Update(&data)
-	rowsAffected, err := user.Update(&data)
+    q := passport.User.Update()
+    q.Where(q.Eq("UserID", "1"))
+	r, err := q.Exec(data)
 
-	log.Printf("%d\n", rowsAffected)
-	return web.Result{rowsAffected, err.Error()}
+	log.Printf("%d\n", r.RowsAffected())
+	return web.Result{r.RowsAffected(), err.Error()}
 }
 
 //Delete
 func (c *UserController) DeleteSubmit(setId int64, id string) web.Result {
-    user := passport.NewUserModel()
+    q := passport.User.Delete()
+    r, err := q.Where(q.Eq("UserID", "1")).Exec()
 
-    //rowsAffected, err := passport.User.Query().Where("region_id", "=", "1643").Delete()
-    rowsAffected, err := user.Delete()
 
-	log.Printf("%d\n", rowsAffected)
-	return web.Result{rowsAffected, err.Error()}
+	log.Printf("%d\n", r.RowsAffected())
+	return web.Result{r.RowsAffected(), err.Error()}
 }
