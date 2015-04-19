@@ -7,12 +7,10 @@ package passport
 import (
 	"github.com/zhgo/example/model/passport"
 	"github.com/zhgo/web"
-	"log"
 )
 
 type UserController struct {
-	//import web.Controller
-	web.Controller
+	web.Controller // import web.Controller
 }
 
 func init() {
@@ -64,7 +62,7 @@ func (c *UserController) BrowseBySet(setId int64) web.Result {
 }
 
 //Insert
-func (c *UserController) AddSubmit(setId int64) web.Result {
+/*func (c *UserController) AddSubmit(setId int64) web.Result {
     item1 := passport.UserEntity{UserId: 2, Nickname: "Demo"}
 	item2 := passport.UserEntity{UserId: 6, Nickname: "小六"}
 	data := []interface{}{item1, item2}
@@ -74,10 +72,10 @@ func (c *UserController) AddSubmit(setId int64) web.Result {
 
 	log.Printf("%d\n", r.LastInsertId())
 	return web.Result{r.LastInsertId(), err.Error()}
-}
+}*/
 
 //Update
-func (c *UserController) EditSubmit(setId int64, id string) web.Result {
+/*func (c *UserController) EditSubmit(setId int64, id string) web.Result {
 	data := map[string]interface{}{"Nickname": "Demo111"}
 
     q := passport.User.Update()
@@ -86,14 +84,14 @@ func (c *UserController) EditSubmit(setId int64, id string) web.Result {
 
 	log.Printf("%d\n", r.RowsAffected())
 	return web.Result{r.RowsAffected(), err.Error()}
-}
+}*/
 
 //Delete
-func (c *UserController) DeleteSubmit(setId int64, id string) web.Result {
+/*func (c *UserController) DeleteSubmit(setId int64, id string) web.Result {
     q := passport.User.Delete()
     r, err := q.Where(q.Eq("UserID", "1")).Exec()
 
 
 	log.Printf("%d\n", r.RowsAffected())
 	return web.Result{r.RowsAffected(), err.Error()}
-}
+}*/

@@ -40,5 +40,8 @@ var Issue = NewIssueModel()
 
 // New Model
 func NewIssueModel() *IssueModel {
-    return db.NewModel("Collab", IssueTable)
+    m := IssueModel{}
+    m.Module = "Collab"
+    m.Table = IssueTable
+    return &m
 }

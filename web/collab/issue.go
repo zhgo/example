@@ -5,15 +5,11 @@
 package collab
 
 import (
-	"github.com/zhgo/example/model/collab"
 	"github.com/zhgo/web"
-	"log"
-	"time"
 )
 
 type IssueController struct {
-	//import web.Controller
-	web.Controller
+	web.Controller // import web.Controller
 }
 
 func init() {
@@ -31,7 +27,7 @@ func (c *IssueController) Browse(setId int64) web.Result {
 }
 
 //Insert
-func (c *IssueController) AddSubmit(setId int64) web.Result {
+/*func (c *IssueController) AddSubmit(setId int64) web.Result {
     item1 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "Demo"}
 	item2 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "小六"}
 	data := []interface{}{item1, item2}
@@ -41,7 +37,7 @@ func (c *IssueController) AddSubmit(setId int64) web.Result {
 
 	log.Printf("%d\n", r.LastInsertId())
 	return web.Result{r.LastInsertId(), err.Error()}
-}
+}*/
 
 //Update
 func (c *IssueController) EditSubmit(setId int64, id string) web.Result {

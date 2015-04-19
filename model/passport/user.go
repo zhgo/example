@@ -20,6 +20,11 @@ type UserModel struct {
 	db.Model //Import db.Model
 }
 
+// Custom function
+func (m *UserModel) Example() {
+    // TODO: do something here.
+}
+
 // Table
 var UserTable = db.NewTable("passport_user", new(UserEntity))
 
@@ -28,10 +33,8 @@ var User = NewUserModel()
 
 // New Model
 func NewUserModel() *UserModel {
-    return db.NewModel("Passport", UserTable)
-}
-
-// Custom function
-func (u *UserModel) Example() {
-    // TODO: do something here.
+    m := UserModel{}
+    m.Module = "Passport"
+    m.Table = UserTable
+    return &m
 }
