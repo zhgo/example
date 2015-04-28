@@ -16,16 +16,6 @@ func init() {
 	web.NewController("Collab", new(IssueController))
 }
 
-//Detail
-func (c *IssueController) Detail(setId int64, id string) web.Result {
-	return c.View.Render()
-}
-
-//Browse
-func (c *IssueController) Browse(setId int64) web.Result {
-	return c.View.Render()
-}
-
 //Insert
 /*func (c *IssueController) AddSubmit(setId int64) web.Result {
     item1 := collab.IssueEntity{CreationTime: time.Now(), LatestActionTime: time.Now(), FinishedTime: time.Now(), Title: "Demo"}
@@ -41,10 +31,20 @@ func (c *IssueController) Browse(setId int64) web.Result {
 
 //Update
 func (c *IssueController) EditSubmit(setId int64, id string) web.Result {
-	return c.View.Render()
+    return c.View.Render()
 }
 
 //Delete
 func (c *IssueController) DeleteSubmit(setId int64, id string) web.Result {
+    return c.View.Render()
+}
+
+//Detail
+func (c *IssueController) Detail(setId int64, id string) web.Result {
+	return c.View.Render()
+}
+
+//Browse
+func (c *IssueController) Browse(setId int64) web.Result {
 	return c.View.Render()
 }
