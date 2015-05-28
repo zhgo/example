@@ -6,16 +6,15 @@ package main
 
 import (
     _ "github.com/zhgo/example/web/collab"
-    "github.com/zhgo/kernel"
     "github.com/zhgo/web"
     "github.com/zhgo/console"
     "log"
 )
 
 func main() {
-    log.Printf("%s\n", kernel.WorkingDir)
+    log.Printf("%s\n", console.WorkingDir)
 
-    c, p := kernel.Console("example")
+    c, p := console.Arguments("example")
 
     if p == "" {
         web.App.Init(c)
