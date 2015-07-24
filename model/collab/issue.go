@@ -11,20 +11,20 @@ import (
 
 // Entity struct
 type IssueEntity struct {
-	IssueId          int64 `pk:"true"`
-	UserID           int64
-	CreationTime     time.Time
-	SetID            int64
-	ParentIssueID    int64
-	Type             int8
-	Priority         int8
-	ComponentID      int64
-	Status           int8
-	LatestActionTime time.Time
-	AssigneeUserID   int64
-	FinishedTime     time.Time
-	Title            string
-	Description      string
+	IssueID          int64     `json:"issue_id" pk:"true"`
+	UserID           int64     `json:"user_id"`
+	CreationTime     time.Time `json:"creation_time"`
+	SetID            int64     `json:"set_id"`
+	ParentIssueID    int64     `json:"parent_issue_id"`
+	Type             int8      `json:"type"`
+	Priority         int8      `json:"priority"`
+	ComponentID      int64     `json:"component_id"`
+	Status           int8      `json:"status"`
+	LatestActionTime time.Time `json:"latest_action_time"`
+	AssigneeUserID   int64     `json:"assignee_user_id"`
+	FinishedTime     time.Time `json:"finished_time"`
+	Title            string    `json:"title"`
+	Description      string    `json:"description"`
 }
 
 // Model struct
@@ -40,8 +40,7 @@ var Issue = NewIssueModel()
 
 // New Model
 func NewIssueModel() *IssueModel {
-    return &IssueModel{Model: db.Model{Module: "Collab", Table: IssueTable}}
+	return &IssueModel{Model: db.Model{Module: "Collab", Table: IssueTable}}
 }
-
 
 // Model methods
