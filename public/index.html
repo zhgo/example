@@ -2,7 +2,7 @@
 <html>
 <head>
     <title></title>
-    <script src="http://localhost:8082/FavUI/jquery/jquery-1.11.1.js"></script>
+    <script src="/src/jquery/jquery.js"></script>
     <script>
         //http://localhost:8081/#System/Region/BrowseBySet/2?id=1
         /*
@@ -37,9 +37,9 @@
 
         console.log(module, controller, action, args)
 
-        var u = url(module, controller, action, args)
+        var u = URL(module, controller, action, args)
 
-        function url(){
+        function URL(){
             var args = Array.prototype.slice.call(arguments);
             console.log(arguments, args)
         }
@@ -48,5 +48,34 @@
     </script>
 </head>
 <body>
+    <h1>Basic Example</h1>
+    <div id="container">
+    </div>
+
+    <script src="/src/react/react.js"></script>
+    <script>
+      var ExampleApplication = React.createClass({
+        render: function() {
+          var elapsed = Math.round(this.props.elapsed  / 100);
+          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+          var message =
+            'React has been successfully running for ' + seconds + ' seconds.';
+
+          return React.DOM.p(null, message);
+        }
+      });
+
+      // Call React.createFactory instead of directly call ExampleApplication({...}) in React.render
+      var ExampleApplicationFactory = React.createFactory(ExampleApplication);
+
+      var start = new Date().getTime();
+      setInterval(function() {
+        React.render(
+          ExampleApplicationFactory({elapsed: new Date().getTime() - start}),
+          document.getElementById('container')
+        );
+      }, 50);
+    </script>
+
 </body>
 </html>
