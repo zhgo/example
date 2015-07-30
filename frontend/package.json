@@ -1,0 +1,19 @@
+{
+  "name": "factor-bundle-demo",
+  "description": "",
+  "dependencies": {
+    "material-ui": ">=0.8",
+    "react": ">=0.13",
+    "react-tap-event-plugin": "^0.1.3"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "factor-bundle": "^2.5.0",
+    "gulp": "^3.8.10",
+    "require-dir": "^0.1.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "scripts": {
+    "start": "gulp"
+  }
+}
