@@ -1,10 +1,13 @@
 module.exports = {
-  markup: {
-    src: "./src/www/**",
-    dest: "./bundle"
-  },
   browserify: {
     // Enable source maps
-    debug: false
+    debug: false,
+    src: "./src",
+    dest: "../public/app",
+    entries: [
+      'collab/index_demo.jsx', 
+      'collab/index_index.jsx',
+      'shared/bootstrap.jsx'
+    ]
   }
 };

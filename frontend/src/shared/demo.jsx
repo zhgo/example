@@ -7,7 +7,7 @@ let Dialog = mui.Dialog
 let ThemeManager = new mui.Styles.ThemeManager();
 let Colors = mui.Styles.Colors;
 
-let Main = React.createClass({
+let Demo = React.createClass({
 
   childContextTypes: {
     muiTheme: React.PropTypes.object
@@ -60,4 +60,4 @@ let Main = React.createClass({
 
 });
 
-module.exports = Main;
+module.exports = Demo;

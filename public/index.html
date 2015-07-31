@@ -2,75 +2,9 @@
 <html>
 <head>
     <title></title>
-    <script src="/src/jquery/jquery.js"></script>
-    <script>
-        //http://localhost:8081/#System/Region/BrowseBySet/2?id=1
-        /*
-         hash: "#System/Region/BrowseBySet/2?id=1"
-         host: "localhost:8081"
-         hostname: "localhost"
-         href: "http://localhost:8081/#System/Region/BrowseBySet/2?id=1"
-         origin: "http://localhost:8081"
-         pathname: "/"
-         port: "8081"
-         protocol: "http:"
-         */
-
-        var hash = window.location.hash
-
-        if(hash == "" || hash.length == 1){
-            hash = "#System/Index/Index"
-        }
-
-        hash = hash.substr(1)
-
-        var urlArr = hash.split("?")
-
-        var pathArr = urlArr[0].split("/")
-
-        var queryArr = typeof urlArr[1] == "undefined" ? [] : urlArr[1].split("&")
-
-        var module = typeof pathArr[0] == "undefined" ? "System" : pathArr.shift()
-        var controller = typeof pathArr[0] == "undefined" ? "Index" : pathArr.shift()
-        var action = typeof pathArr[0] == "undefined" ? "Index" : pathArr.shift()
-        var args = pathArr
-
-        console.log(module, controller, action, args)
-
-        var u = URL(module, controller, action, args)
-
-        function URL(){
-            var args = Array.prototype.slice.call(arguments);
-            console.log(arguments, args)
-        }
-
-        //load page: title, layout, body
-    </script>
 </head>
 <body>
-    <h1>Basic Example</h1>
-    <div id="container"></div>
-
-    <script src="/src/react/react.js"></script>
-    <script src="/src/react/JSXTransformer.js"></script>
-    <script type="text/jsx">
-      var ExampleApplication = React.createClass({
-        render: function() {
-          var elapsed = Math.round(this.props.elapsed  / 100);
-          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-          var message =
-            'React has been successfully running for ' + seconds + ' seconds.';
-
-          return <p>{message}</p>;
-        }
-      });
-      var start = new Date().getTime();
-      setInterval(function() {
-        React.render(
-          <ExampleApplication elapsed={new Date().getTime() - start} />,
-          document.getElementById('container')
-        );
-      }, 50);
-    </script>
+    <script src="/app/shared/common.js"></script>
+    <script src="/app/shared/bootstrap.js"></script>
 </body>
 </html>
