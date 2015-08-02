@@ -14,12 +14,15 @@ var assign = require('lodash.assign'),
 // add custom browserify options here
 var customOpts = {
   // Required watchify args
-  cache: {}, packageCache: {}, fullPaths: false,
+  //cache: {}, packageCache: {}, fullPaths: false,
   entries: tranSrc(config.entries),
   debug: config.debug
 };
-var opts = assign({}, watchify.args, customOpts);
-var b = watchify(browserify(opts));
+//var opts = assign({}, watchify.args, customOpts);
+//var b = watchify(browserify(opts));
+
+var opts = customOpts;
+var b = browserify(opts);
 
 // add transformations here
 // i.e. b.transform(coffeeify);

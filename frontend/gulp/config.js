@@ -7,6 +7,7 @@ module.exports = {
     entries: [
       'collab/index_demo.jsx', 
       'collab/index_index.jsx',
+      'collab/index_signin.jsx',
       'shared/bootstrap.jsx'
     ]
   }

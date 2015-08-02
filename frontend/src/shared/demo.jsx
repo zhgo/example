@@ -47,6 +47,7 @@ let Demo = React.createClass({
         
         <h1>material-ui</h1>
         <h2>example project</h2>
+        <a href="#collab/index/signin">signin</a>
 
         <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
 

@@ -75,4 +75,5 @@
   }
 
   loadJS(module, controller, action);
+
 })();
