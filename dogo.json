@@ -1,7 +1,10 @@
 {
   "WorkingDir": "{GOPATH}/src/github.com/zhgo/example",
   "SourceDir": [
-    "{GOPATH}/src/github.com/zhgo"
+    "{GOPATH}/src/github.com/zhgo/console",
+    "{GOPATH}/src/github.com/zhgo/db",
+    "{GOPATH}/src/github.com/zhgo/example/backend",
+    "{GOPATH}/src/github.com/zhgo/web"
   ],
   "SourceExt": ".c|.cpp|.go|.h|.json",
   "BuildCmd": "go build github.com/zhgo/example",

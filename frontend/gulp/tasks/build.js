@@ -3,8 +3,10 @@ var babelify = require('babelify'),
     config = require('../config').browserify,
     factor = require('factor-bundle'),
     gulp = require('gulp'),
+    gutil = require('gulp-util'),
     handleErrors = require('../util/handleErrors'),
     source = require('vinyl-source-stream');
+    watchify = require('watchify');
 
 gulp.task('build', function(){
     var tranSrc = function(entries) {
@@ -28,19 +30,27 @@ gulp.task('build', function(){
         return dists;
     };
 
-    var bundler = browserify({
+    var bundler = watchify(browserify({
+        cache: {}, packageCache: {},
         entries: tranSrc(config.entries),
         debug: config.debug
-    });
+    }));
 
     bundler.transform(babelify.configure({stage: 1}));
 
-    return bundler.plugin(factor, {
-        // File output order must match entry order
-        o: tranDist(config.entries)
-    })
-    .bundle()
-    .on('error', handleErrors)
-    .pipe(source('shared/common.js'))
-    .pipe(gulp.dest(config.dest));
+    var bundlerFun = function() {
+        return bundler.plugin(factor, {
+            // File output order must match entry order
+            o: tranDist(config.entries)
+        })
+        .bundle()
+        .on('error', handleErrors)
+        .pipe(source('shared/common.js'))
+        .pipe(gulp.dest(config.dest));
+    };
+
+    bundler.on('update', bundlerFun); // on any dep update, runs the bundler
+    bundler.on('log', gutil.log); // output build logs to terminal
+
+    return bundlerFun();
 });

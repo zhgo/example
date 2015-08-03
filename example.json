@@ -1,6 +1,7 @@
 {
   "Listen": ":8081",
   "Modules": {
-    "Collab": {"DB": {"Type": "sqlite3", "DSN": "{WorkingDir}/data/sqlite/collab.db"}}
+    "Collab": {"DB": {"Type": "sqlite3", "DSN": "{WorkingDir}/data/sqlite/collab.db"}},
+    "Passport": {"DB": {"Type": "mysql", "DSN": ""}}
   }
 }
