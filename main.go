@@ -6,7 +6,8 @@ package main
 
 import (
 	"github.com/zhgo/console"
-	_ "github.com/zhgo/example/web/collab"
+	_ "github.com/zhgo/example/backend/collab/controller"
+	_ "github.com/zhgo/example/backend/passport/controller"
 	"github.com/zhgo/web"
 	"log"
 )
