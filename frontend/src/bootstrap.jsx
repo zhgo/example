@@ -9,45 +9,41 @@
  port: "8081"
  protocol: "http:"
  */
+var zhgo = new function () {
+  this.module = "";
+  this.controller = "";
+  this.action = "";
+  this.args = "";
 
-var hash = window.location.hash
+  this.load = function() {
+    var hash = window.location.hash
 
-if(hash == "" || hash.length == 1){
-    hash = "#collab/index/index"
-}
+    if(hash == "" || hash.length == 1){
+        hash = "#collab/index/index"
+    }
 
-hash = hash.substr(1)
+    hash = hash.substr(1)
 
-var urlArr = hash.split("?")
+    var urlArr = hash.split("?")
 
-var pathArr = urlArr[0].split("/")
+    var pathArr = urlArr[0].split("/")
 
-var queryArr = typeof urlArr[1] == "undefined" ? [] : urlArr[1].split("&")
+    var queryArr = typeof urlArr[1] == "undefined" ? [] : urlArr[1].split("&")
 
-var module = typeof pathArr[0] == "undefined" ? "collab" : pathArr.shift()
-var controller = typeof pathArr[0] == "undefined" ? "index" : pathArr.shift()
-var action = typeof pathArr[0] == "undefined" ? "index" : pathArr.shift()
-var args = pathArr
+    this.module = typeof pathArr[0] == "undefined" ? "collab" : pathArr.shift()
+    this.controller = typeof pathArr[0] == "undefined" ? "index" : pathArr.shift()
+    this.action = typeof pathArr[0] == "undefined" ? "index" : pathArr.shift()
+    this.args = pathArr
 
-console.log(module, controller, action, args)
+    // console.log(this.module, this.controller, this.action, this.args)
 
-var u = URL(module, controller, action, args)
+    loadJS(this.module, this.controller, this.action);
+  };
+};
 
-function URL(){
-    var args = Array.prototype.slice.call(arguments);
-    console.log(arguments, args)
-}
-
-// Render the main app react component into the document body.
-// For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-/*var ScriptClass = React.createClass({
-  render: function(){
-    var p = "/app/"+module+"/"+controller+"/"+action+".js";
-    return <script src={p} type="text/jsx" />
-  }
-});
-
-React.render(<ScriptClass />, document.body);*/
+window.onhashchange = function() {
+  zhgo.load();
+};
 
 function loadJS(m, c, a) {
   // DOM: Create the script element
@@ -60,4 +56,10 @@ function loadJS(m, c, a) {
   document.body.appendChild(jsElm);
 }
 
-loadJS(module, controller, action);
+// var u = URL(module, controller, action, args)
+function URL(){
+  var args = Array.prototype.slice.call(arguments);
+  console.log(arguments, args)
+}
+
+zhgo.load();

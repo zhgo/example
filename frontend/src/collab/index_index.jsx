@@ -21,6 +21,7 @@ var IndexIndex = React.createClass({
         </label>
       </div>
       <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <a href="#collab/issue/add">Issue add</a>
     </form>
     </div>);
   }
