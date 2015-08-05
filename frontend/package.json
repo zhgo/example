@@ -11,10 +11,12 @@
     "babelify": "^6.1.2",
     "browserify": "^6.3.3",
     "factor-bundle": "^2.5.0",
+    "frontify": "^1.0.1",
     "gulp": "^3.8.10",
     "gulp-notify": "^2.1.0",
     "gulp-util": "^3.0.1",
     "require-dir": "^0.1.0",
+    "async": "^0.4.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
   }

@@ -1,47 +1,34 @@
-(function () {
-  let React = require('react');
-  let mui = require('material-ui');
-  let injectTapEventPlugin = require("react-tap-event-plugin");
-  let RaisedButton = mui.RaisedButton;
-  let TextField = mui.TextField;
-  let ThemeManager = new mui.Styles.ThemeManager();
+var React = require("react");
+// var frontify = require("../shared/frontify.js");
+var frontify = require("frontify");
+var Container = require("../shared/container.jsx");
 
-  //Needed for React Developer Tools
-  window.React = React;
+var IndexSignin = React.createClass({
+  componentDidMount: function(){
+    frontify.formValidate("#form1", function(data){
+      console.log(data);
+    }, function(err){
+      console.log(err);
+    });
+  },
+  
+  render: function(){
+    return (<div className="container">
+    <form id="form1" action="/collab/index/signin" method="post" className="form-signin">
+      <h2 className="form-signin-heading">Please sign in</h2>
+      <label for="email" className="sr-only">Email address</label>
+      <input type="email" name="email" className="form-control" placeholder="Email address" data-rule-required="true" data-rule-email="true" />
+      <label for="password" className="sr-only">Password</label>
+      <input type="password" name="password" className="form-control" placeholder="Password" />
+      <div className="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    </div>);
+  }
+});
 
-  //Needed for onTouchTap
-  //Can go away when react 1.0 release
-  //Check this repo:
-  //https://github.com/zilverline/react-tap-event-plugin
-  injectTapEventPlugin();
-
-  // Render the main app react component into the document body.
-  // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-  let SomeAwesomeComponent = React.createClass({
-
-    childContextTypes: {
-      muiTheme: React.PropTypes.object
-    },
-
-    getChildContext() {
-      return {
-        muiTheme: ThemeManager.getCurrentTheme()
-      };
-    },
-
-    render() {
-      return (
-          <div>
-          <RaisedButton label="Default" />
-          <TextField
-              hintText="Hint Text" /><br/>
-          <RaisedButton label="Default" />
-          </div>
-      );
-    }
-
-  });
-
-  React.render(<SomeAwesomeComponent />, document.body);
-
-})();
+React.render(<IndexSignin />, document.body);

@@ -40,7 +40,7 @@ var Issue = NewIssueModel()
 
 // New Model
 func NewIssueModel() *IssueModel {
-	return &IssueModel{Model: db.Model{Module: "Collab", Table: IssueTable}}
+	return &IssueModel{Model: db.NewModel("Collab", IssueTable)}
 }
 
 // Model methods

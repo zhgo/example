@@ -29,7 +29,7 @@ var User = NewUserModel()
 
 // New Model
 func NewUserModel() *UserModel {
-	return &UserModel{Model: db.Model{Module: "Passport", Table: UserTable}}
+	return &UserModel{Model: db.NewModel("Passport", UserTable)}
 }
 
 // Model methods
