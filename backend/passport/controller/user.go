@@ -8,10 +8,10 @@ import (
 	"github.com/zhgo/web"
 )
 
-type PassportController struct {
+type UserController struct {
 	web.Controller // import web.Controller
 }
 
 func init() {
-	web.NewController("Passport", new(PassportController))
+	web.NewController("Passport", new(UserController))
 }
