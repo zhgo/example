@@ -13,5 +13,5 @@ type UserController struct {
 }
 
 func init() {
-	web.NewController("Passport", new(UserController))
+	web.NewController(new(UserController))
 }

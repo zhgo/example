@@ -13,7 +13,7 @@ type IssueController struct {
 }
 
 func init() {
-	web.NewController("Collab", new(IssueController))
+	web.NewController(new(IssueController))
 }
 
 //Insert
